@@ -1,0 +1,82 @@
+# =========================================================================
+# Nội dung cho file .gitignore
+# =========================================================================
+
+# --- File hệ điều hành / System Files ---
+# Bỏ qua các file hệ thống ẩn hoặc tạm thời
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- File cấu hình IDE / Editor ---
+# Bỏ comment hoặc thêm vào nếu bạn dùng các IDE/editor này và không muốn chia sẻ cài đặt dự án
+# .idea/ # Cho các IDE của JetBrains (WebStorm, PyCharm, PHPStorm...)
+# *.sublime-project
+# *.sublime-workspace
+# .vscode/* # Bỏ qua tất cả trong .vscode, trừ những file được cho phép bên dưới
+# !.vscode/settings.json # Giữ lại file settings nếu muốn chia sẻ
+# !.vscode/extensions.json # Giữ lại file gợi ý extension nếu muốn chia sẻ
+# !.vscode/launch.json # Giữ lại file cấu hình debug nếu muốn chia sẻ
+# !.vscode/tasks.json # Giữ lại file task nếu muốn chia sẻ
+
+# --- File nhạy cảm / Sensitive Files ---
+# TUYỆT ĐỐI KHÔNG commit các file .env chứa thông tin bí mật!
+.env
+.env.*
+!.env.example # Nhưng giữ lại file .env.example nếu có (để người khác biết cần biến gì)
+
+# --- File Log ---
+# Bỏ qua tất cả các file log
+*.log
+logs/
+npm-debug.log* # Log lỗi của npm
+yarn-debug.log* # Log lỗi của yarn
+yarn-error.log* # Log lỗi của yarn
+
+# --- Thư mục Build / Output / File tạm ---
+# Bỏ qua các thư mục chứa sản phẩm build hoặc file tạm
+dist/
+build/
+*.tmp
+*.swp # File tạm của Vim
+*~    # File backup của một số editor
+
+# =========================================================================
+# --- Dependencies (QUAN TRỌNG: CHỌN PHẦN PHÙ HỢP VỚI DỰ ÁN CỦA BẠN) ---
+# =========================================================================
+
+# --- Dành cho dự án Node.js (npm/yarn) ---
+# Bỏ qua thư mục chứa các gói cài đặt
+node_modules/
+# package-lock.json # Thường thì NÊN commit file này để đảm bảo cài đặt nhất quán
+# yarn.lock # Thường thì NÊN commit file này
+
+# --- Dành cho dự án Python (pip/venv) ---
+# Bỏ qua thư mục môi trường ảo
+# venv/ # Hoặc tên thư mục môi trường ảo của bạn (ví dụ: .venv, env)
+# Bỏ qua các file bytecode và cache của Python
+# *.pyc
+# *.pyo
+# __pycache__/
+# Bỏ qua các cài đặt project của một số IDE/Tool
+# .Python # Spyder project settings
+# instance/ # Thường dùng trong Flask
+
+# --- Dành cho dự án PHP (Composer) ---
+# Bỏ qua thư mục chứa các gói cài đặt
+# vendor/
+# composer.lock # Thường thì NÊN commit file này
+# .php_cs.cache # Cache của PHP Code Sniffer
+
+# =========================================================================
+
+# --- File Database (nếu dùng CSDL dạng file cục bộ) ---
+# Ví dụ: SQLite
+# *.sqlite3
+# *.db
+# *.db-journal # File tạm của SQLite
+
+# --- Khác ---
+# Thêm bất kỳ file hoặc thư mục nào khác bạn muốn bỏ qua ở đây
+# Ví dụ: thư mục chứa ảnh upload của người dùng nếu không muốn đưa lên Git
+# public/uploads/
