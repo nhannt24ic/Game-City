@@ -1,36 +1,38 @@
 /* public/css/auth.css */
-/* Phiên bản tổng hợp và cập nhật với !important để ghi đè Bootstrap */
 
 body {
-    /* Màu nền chính */
+    /* Màu nền chính vẫn giữ nguyên */
     background-color: #1a0d2a !important;
     color: #f0f0f0;
-    font-family: sans-serif; /* Bạn có thể chọn font đẹp hơn sau */
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
+    /* Bỏ các thuộc tính flex căn giữa ở body đi, vì row của Bootstrap sẽ làm việc đó */
 }
 
-/* Container tùy chỉnh cho form */
+/* Container tùy chỉnh không cần flex nữa */
 .auth-container {
     background-color: rgba(0, 0, 0, 0.3);
     padding: 30px 40px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     width: 100%; /* Chiếm hết chiều rộng của cột chứa nó */
-    max-width: 450px; /* Có thể điều chỉnh */
+    max-width: 450px; /* Có thể tăng max-width một chút */
 }
 
-/* Cột chứa hình ảnh */
+/* Style cho cột chứa hình ảnh */
 .image-section {
     /* Đường dẫn tương đối từ file auth.css đến thư mục images */
-    background-image: url('../images/wanwan.png'); /* Đảm bảo ảnh này tồn tại trong public/images */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url('../images/wanwan.png'); /* <<< Đã cập nhật tên file ảnh */
+    background-size: cover;          /* Đảm bảo ảnh nền phủ kín khu vực div */
+    background-position: center;       /* Căn giữa ảnh nền */
+    background-repeat: no-repeat;      /* Không lặp lại ảnh nền */
+
+    /* Thêm lớp phủ tối màu để chữ nổi bật hơn nếu cần */
     position: relative; /* Để định vị lớp phủ */
 }
 
-/* Lớp phủ cho ảnh */
+/* Lớp phủ tùy chọn */
 .image-section::before {
     content: '';
     position: absolute;
@@ -42,7 +44,7 @@ body {
     z-index: 1;
 }
 
-/* Nội dung text trên ảnh */
+/* Nội dung text trên ảnh (nếu có) */
 .image-section .image-content {
     position: relative; /* Nằm trên lớp phủ */
     z-index: 2;
@@ -54,76 +56,63 @@ body {
 .image-section .image-content h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    font-weight: bold; 
+    font-weight: bold;
 }
 .image-section .image-content p {
     font-size: 1.1rem;
 }
 
-/* Định dạng form chung của Bootstrap */
+
+/* Các style còn lại cho form (.form-signin, .form-floating, .btn...) */
 .form-signin {
     max-width: 380px;
     padding: 1rem;
 }
 .form-signin h1 {
-    color: #e0cffc !important;
+    color: #e0cffc;
     margin-bottom: 1.5rem !important;
 }
 
-/* === Ghi đè Floating Labels với !important === */
 .form-floating > .form-control {
-    background-color: #2c1d3d !important;
-    color: #f0f0f0 !important;
-    border: 1px solid #4a2f6b !important;
-    box-shadow: none !important; /* Xóa bóng mặc định khi chưa focus */
+    background-color: #2c1d3d;
+    color: #f0f0f0;
+    border: 1px solid #4a2f6b;
 }
-
 .form-floating > label {
-    color: #9a7fc0 !important;
+    color: #9a7fc0;
 }
-
-/* Trạng thái khi input CÓ giá trị */
 .form-floating > .form-control:not(:placeholder-shown) {
-    background-color: #2c1d3d !important;
-    color: #f0f0f0 !important;
+    background-color: #2c1d3d;
+    color: #f0f0f0;
 }
-
-/* Trạng thái khi input được FOCUS */
 .form-floating > .form-control:focus {
-    background-color: #35234a !important;
-    color: #f0f0f0 !important;
-    border-color: #8a5fda !important;
-    /* Ghi đè box-shadow với màu tùy chỉnh */
-    box-shadow: 0 0 0 0.25rem rgba(138, 95, 218, 0.35) !important;
+    background-color: #35234a;
+    color: #f0f0f0;
+    border-color: #8a5fda;
+    box-shadow: 0 0 0 0.25rem rgba(138, 95, 218, 0.25);
 }
-
-/* Trạng thái label khi input focus hoặc có giá trị */
+.form-floating > .form-control:focus ~ label::after,
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after {
+    background-color: transparent !important;
+}
 .form-floating > .form-control:focus ~ label,
 .form-floating > .form-control:not(:placeholder-shown) ~ label {
-    color: #ab8ae0 !important;
+    color: #ab8ae0;
 }
-/* === Kết thúc phần ghi đè Floating Labels === */
-
-
-/* Ghi đè nút bấm */
 .form-signin .btn-primary {
-    background-color: #8a5fda !important;
-    border-color: #8a5fda !important;
+    background-color: #8a5fda;
+    border-color: #8a5fda;
 }
 .form-signin .btn-primary:hover {
-    background-color: #6d44b8 !important;
-    border-color: #6d44b8 !important;
+    background-color: #6d44b8;
+    border-color: #6d44b8;
 }
-
-/* Ghi đè link chuyển đổi */
 .auth-switch a {
-    color: #ab8ae0 !important;
+    color: #ab8ae0;
 }
 .auth-switch a:hover {
-    color: #c7b2e0 !important;
+    color: #c7b2e0;
 }
-
-/* Ghi đè text phụ */
 .text-body-secondary {
     color: #bca8d4 !important;
 }
