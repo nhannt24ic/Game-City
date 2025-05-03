@@ -23,7 +23,8 @@ desktop.ini
 # TUYỆT ĐỐI KHÔNG commit các file .env chứa thông tin bí mật!
 .env
 .env.*
-!.env.example # Nhưng giữ lại file .env.example nếu có (để người khác biết cần biến gì)
+!.env.example 
+# Nhưng giữ lại file .env.example nếu có (để người khác biết cần biến gì)
 
 # --- File Log ---
 # Bỏ qua tất cả các file log
