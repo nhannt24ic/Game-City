@@ -5,10 +5,10 @@ require('dotenv').config({ path: '../.env' }); // Load .env từ thư mục gố
 
 // --- Cấu hình DB (giống setupDb.js) ---
 const dbConfig = {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME, // Phải kết nối vào DB đã tạo
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'game_city_db', // Phải kết nối vào DB đã tạo
 };
 
 // --- Dữ liệu người dùng mẫu ---

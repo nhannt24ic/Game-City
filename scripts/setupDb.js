@@ -6,14 +6,14 @@ const mysql = require('mysql2/promise');
 require('dotenv').config({ path: '../.env' }); // Load file .env từ thư mục gốc
 
 const dbConfig = {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
     // Database sẽ được chỉ định sau khi tạo/đảm bảo nó tồn tại
 };
 
 // Sử dụng tên DB là game_city_db
-const dbName = process.env.DB_NAME;
+const dbName = process.env.DB_NAME || 'game_city_db';
 
 // --- Định nghĩa SQL ---
 const createDbSql = `CREATE DATABASE IF NOT EXISTS \`${dbName}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`;
