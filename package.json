@@ -1,0 +1,38 @@
+{
+  "name": "game-city",
+  "version": "1.0.0",
+  "description": "Game Website",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "nodemon src/backend/server.js",
+  "db:setup": "node scripts/setupDb.js",
+  "db:seed": "node scripts/seedDb.js",
+  "start": "node src/backend/server.js"    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhannt24ic/Game-City.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhannt24ic/Game-City/issues"
+  },
+  "homepage": "https://github.com/nhannt24ic/Game-City#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
