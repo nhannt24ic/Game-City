@@ -7,7 +7,7 @@ require('dotenv').config({ path: '../.env' }); // Load .env từ thư mục gố
 const dbConfig = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD || '',
+    password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME, // Phải kết nối vào DB đã tạo
 };
 
