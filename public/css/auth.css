@@ -99,6 +99,19 @@ body {
 .form-floating > .form-control:not(:placeholder-shown) ~ label {
     color: #ab8ae0;
 }
+.form-floating > .form-control:-webkit-autofill,
+.form-floating > .form-control:-webkit-autofill:hover,
+.form-floating > .form-control:-webkit-autofill:focus,
+.form-floating > .form-control:-webkit-autofill:active {
+    -webkit-text-fill-color: #f0f0f0 !important;
+    color: #f0f0f0 !important; 
+
+    box-shadow: 0 0 0 100px #2c1d3d inset !important;
+
+    caret-color: #f0f0f0 !important;
+
+    transition: background-color 5000s ease-in-out 0s; 
+}
 .form-signin .btn-primary {
     background-color: #8a5fda;
     border-color: #8a5fda;
