@@ -62,7 +62,8 @@ if (registerForm) { // Chỉ chạy nếu form tồn tại trên trang hiện t�
         const userData = {
             username: username,
             email: email,
-            password: password
+            password: password,
+            confirmPassword : confirmPassword
         };
 
         try {
