@@ -23,7 +23,7 @@ if (registerForm) { // Chỉ chạy nếu form tồn tại trên trang hiện t�
 
         // 1. Kiểm tra trường trống
         if (!username || !email || !password || !confirmPassword) {
-            if(errorMessageDiv) errorMessageDiv.textContent = 'Vui lòng nhập đầy đủ thông tin.';
+            if(errorMessageDiv) errorMessageDiv.textContent = 'Please fill in all the information.';
             return; // Dừng lại
         }
 
@@ -31,13 +31,13 @@ if (registerForm) { // Chỉ chạy nếu form tồn tại trên trang hiện t�
         // Regex này kiểm tra cấu trúc cơ bản user@domain.ext
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            if(errorMessageDiv) errorMessageDiv.textContent = 'Định dạng email không hợp lệ.';
+            if(errorMessageDiv) errorMessageDiv.textContent = 'Invalid email format.';
             return; // Dừng lại
         }
 
         // 3. Kiểm tra độ dài mật khẩu (ví dụ: ít nhất 6 ký tự)
         if (password.length < 6) {
-             if(errorMessageDiv) errorMessageDiv.textContent = 'Mật khẩu phải có ít nhất 6 ký tự.';
+             if(errorMessageDiv) errorMessageDiv.textContent = 'Password must have at least 6 characters.';
              return; // Dừng lại
         }
         // (Tùy chọn) Thêm kiểm tra độ dài tối đa nếu cần
@@ -48,7 +48,7 @@ if (registerForm) { // Chỉ chạy nếu form tồn tại trên trang hiện t�
 
         // 4. Kiểm tra mật khẩu nhập lại
         if (password !== confirmPassword) {
-            if(errorMessageDiv) errorMessageDiv.textContent = 'Mật khẩu nhập lại không khớp!';
+            if(errorMessageDiv) errorMessageDiv.textContent = 'Password confirmation does not match!';
             return; // Dừng lại
         }
 
@@ -80,9 +80,9 @@ if (registerForm) { // Chỉ chạy nếu form tồn tại trên trang hiện t�
             try {
                  data = await response.json();
             } catch (parseError) {
-                 console.error('Lỗi parse JSON khi đăng ký:', parseError);
+                 console.error('JSON parse error during registration:', parseError);
                  // Hiển thị lỗi dựa trên status nếu không parse được JSON
-                 if(errorMessageDiv) errorMessageDiv.textContent = `Lỗi phản hồi từ máy chủ (Status: ${response.status}).`;
+                 if(errorMessageDiv) errorMessageDiv.textContent = `Server response error (Status: ${response.status}).`;
                  return; // Dừng xử lý
             }
 
@@ -95,18 +95,18 @@ if (registerForm) { // Chỉ chạy nếu form tồn tại trên trang hiện t�
                 // **Định nghĩa thông báo lỗi đăng ký tùy chỉnh**
                 switch (errorCode) {
                     case 'USERNAME_EXISTS':
-                        customErrorMessage = 'Tên người dùng này đã tồn tại.';
+                        customErrorMessage = 'This username already exists.';
                         break;
                     case 'EMAIL_EXISTS':
-                        customErrorMessage = 'Địa chỉ email này đã được đăng ký.';
+                        customErrorMessage = 'This email address is already registered.Please use another email.';
                         break;
                     // Thêm các mã lỗi đăng ký khác nếu backend có hỗ trợ
                     case 'SERVER_ERROR':
-                        customErrorMessage = 'Lỗi hệ thống phía máy chủ khi đăng ký.';
+                        customErrorMessage = 'Server-side system error during registration.';
                         break;
                     default:
                         // Nếu không có errorCode cụ thể, dùng message từ server hoặc báo lỗi chung
-                        customErrorMessage = serverMessage || `Đăng ký thất bại (Lỗi: ${errorCode || response.status}).`;
+                        customErrorMessage = serverMessage || `Registration failed (Error: ${errorCode || response.status}).`;
                 }
                 // --- Kết thúc định nghĩa ---
 
@@ -114,13 +114,13 @@ if (registerForm) { // Chỉ chạy nếu form tồn tại trên trang hiện t�
 
             } else {
                 // Đăng ký thành công!
-                alert('Đăng ký thành công! Bạn sẽ được chuyển đến trang đăng nhập.'); // Thông báo cho người dùng
+                alert('Registration successful! You will be redirected to the login page.'); // Thông báo cho người dùng
                 window.location.href = 'login.html'; // Chuyển hướng sang trang đăng nhập
             }
         } catch (error) {
             // Lỗi mạng hoặc lỗi không kết nối được tới server
-            console.error('Lỗi fetch đăng ký:', error);
-            if(errorMessageDiv) errorMessageDiv.textContent = 'Không thể kết nối đến máy chủ. Vui lòng thử lại.';
+            console.error('Registration fetch error:', error);
+            if(errorMessageDiv) errorMessageDiv.textContent = 'Cannot connect to the server. Please try again.';
         }
     });
 }
@@ -143,7 +143,7 @@ if (loginForm) {
 
         // --- Kiểm tra dữ liệu nhập cơ bản ---
         if (!email || !password) {
-             if (errorMessageDiv) errorMessageDiv.textContent = 'Vui lòng nhập đầy đủ Email và Mật khẩu.';
+             if (errorMessageDiv) errorMessageDiv.textContent = 'Please fill in the Email and Password fields.';
              return; // Dừng không gửi request
         }
         // --- Kết thúc kiểm tra cơ bản ---
@@ -162,8 +162,8 @@ if (loginForm) {
             try {
                  data = await response.json();
             } catch (parseError) {
-                 console.error('Lỗi parse JSON khi đăng nhập:', parseError);
-                 if (errorMessageDiv) errorMessageDiv.textContent = `Lỗi phản hồi từ máy chủ (Status: ${response.status}).`;
+                 console.error('JSON parse error during login:', parseError);
+                 if (errorMessageDiv) errorMessageDiv.textContent = `Server response error. (Status: ${response.status}).`;
                  return; // Dừng xử lý
             }
 
@@ -177,24 +177,24 @@ if (loginForm) {
                 // **Định nghĩa thông báo lỗi đăng nhập tùy chỉnh**
                 // Ưu tiên kiểm tra message cụ thể "Invalid credentials."
                 if (serverMessage === 'Invalid credentials.') {
-                    customErrorMessage = 'Email hoặc Mật khẩu bạn nhập không chính xác.';
+                    customErrorMessage = 'Incorrect Email or Password.';
                 } else {
                     // Nếu không phải message đó, thì mới dựa vào errorCode (nếu có)
                     switch (errorCode) {
                         case 'USER_NOT_FOUND': // Chỉ xử lý nếu backend có gửi mã này
-                            customErrorMessage = 'Tài khoản Email này chưa được đăng ký.';
+                            customErrorMessage = 'This email address is not registered.';
                             break;
                         // Thêm các mã lỗi đăng nhập khác nếu backend có hỗ trợ
                         // case 'ACCOUNT_LOCKED':
                         //     customErrorMessage = 'Tài khoản của bạn đã bị khóa.';
                         //     break;
                         case 'SERVER_ERROR':
-                            customErrorMessage = 'Lỗi hệ thống phía máy chủ khi đăng nhập.';
+                            customErrorMessage = 'Server-side system error during login.';
                             break;
                         default:
                             // Nếu không khớp message và cũng không khớp errorCode nào
                             // thì dùng message từ server (nếu có) hoặc báo lỗi chung
-                            customErrorMessage = serverMessage || `Đăng nhập thất bại (Lỗi: ${errorCode || response.status}).`;
+                            customErrorMessage = serverMessage || `Login failed (Error: ${errorCode || response.status}).`;
                     }
                 }
                 // --- Kết thúc định nghĩa ---
@@ -208,18 +208,18 @@ if (loginForm) {
                     if (data.user) {
                        localStorage.setItem('userInfo', JSON.stringify(data.user));
                     }
-                    console.log('Đã lưu token:', data.token);
+                    console.log('Token saved:', data.token);
                     window.location.href = 'home.html'; // Chuyển hướng đến trang chủ
                 } else {
                     // Thành công nhưng không có token? Lỗi logic backend
-                    console.error('Lỗi đăng nhập: Phản hồi OK nhưng không có token.');
-                    if (errorMessageDiv) errorMessageDiv.textContent = 'Lỗi đăng nhập không mong đợi.';
+                    console.error('Login error: Response OK but no token.');
+                    if (errorMessageDiv) errorMessageDiv.textContent = 'Unexpected login error.';
                 }
             }
         } catch (error) {
             // Lỗi mạng hoặc lỗi không kết nối được tới server
             console.error('Lỗi fetch đăng nhập:', error);
-            if (errorMessageDiv) errorMessageDiv.textContent = 'Không thể kết nối đến máy chủ. Vui lòng kiểm tra lại mạng.';
+            if (errorMessageDiv) errorMessageDiv.textContent = 'Cannot connect to the server. Please check your network connection.';
         }
     });
 }
